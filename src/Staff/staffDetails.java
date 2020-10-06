@@ -1,13 +1,14 @@
 package Staff;
 
+
 public class staffDetails {
 
     private String name;
     private String email;
     private String password;
-    private int contactNum;
+    private String contactNum;
 
-    public staffDetails(String staffName, String staffEmail, String staffPassword, int staffContactNum) {
+    public staffDetails(String staffName, String staffEmail, String staffPassword, String staffContactNum) {
 
         name = staffName;
         email = staffEmail;
@@ -15,6 +16,13 @@ public class staffDetails {
         contactNum = staffContactNum;
 
     }
+
+    public void displayDetails() {
+
+        System.out.println("Welcome " + name);
+    }
+
+
 
 
 
