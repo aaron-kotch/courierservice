@@ -1,29 +1,10 @@
 package Staff;
 
-import java.util.Arrays;
+import javax.swing.*;
 
 public class Main {
-    
-    private String name;
-    private String email;
-    private String password;
-    private String contact;
 
-    public static void main(String[] argv) {
-        
-        boolean signedIn = false;
-
-        signIn.logIn();
-
-
-
-
-        staffDetails sD = new staffDetails("aaron", "aaronssikua@gmail.com", "12345678", "0178759373");
-
-        sD.displayDetails();
-
-
-    }
+    public static Login loginPage = new Login();
+    public static Menu menuPage = new Menu();
 
 }
-
