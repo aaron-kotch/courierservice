@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Signup implements ActionListener {
@@ -54,17 +56,22 @@ public class Signup implements ActionListener {
 
         try {
 
-            Scanner s = new Scanner(new File("customer.txt"));
+            File file  = new File("customer.txt");
+            System.out.println(user + "\n" + pass);
 
-            while(s.hasNext()) {
-                String x = s.nextLine();
-                int y = Integer.parseInt(s.nextLine());
-                s.nextLine();
+            if(!file.exists()){
+                file.createNewFile();
             }
+
+            FileWriter writer = new FileWriter("customer.txt", true);
+            writer.write(user + "\n" + pass + "\n\n");
+            writer.close();
+
+
 
         }
 
-        catch (FileNotFoundException fileNotFoundException) {
+        catch (IOException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
         }
 

@@ -1,10 +1,14 @@
 package Staff;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.System;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Start implements ActionListener{
 
@@ -12,6 +16,9 @@ public class Start implements ActionListener{
     private static final JPanel panel = new JPanel();
     private static final JButton login = new JButton("LOGIN");
     private static final JButton signup = new JButton("SIGN UP");
+
+    public static Staff loggedIn = null;
+    public static ArrayList<Staff> staffList = new ArrayList<>();
 
     public Start() {
 
@@ -33,6 +40,31 @@ public class Start implements ActionListener{
         startFrame.setTitle("Parking System");
         startFrame.setVisible(true);
 
+        try {
+            File file  = new File("customer.txt");
+
+            if(!file.exists()){
+                file.createNewFile();
+            }
+
+            Scanner s = new Scanner(file);
+
+            while(s.hasNextLine()) {
+                String x = s.nextLine();
+                String y = s.nextLine();
+                s.nextLine();
+                Staff sT = new Staff(x, y);
+                staffList.add(sT);
+            }
+
+            System.out.println(staffList);
+
+        }
+
+        catch (IOException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args) {
@@ -49,9 +81,8 @@ public class Start implements ActionListener{
 
         else if (e.getSource() == signup) {
 
-            //startFrame.dispose();
-            String x = JOptionPane.showInputDialog("Name:");
-            System.out.println(x);
+            startFrame.dispose();
+            new Signup();
         }
 
     }

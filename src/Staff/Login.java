@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.io.File;
 
@@ -59,6 +60,25 @@ public class Login implements ActionListener {
         String user = username.getText();
         String pass = String.valueOf(password.getPassword());
 
+        for (int i = 0; i < Start.staffList.size(); i++) {
+
+            Staff sT = Start.staffList.get(i);
+
+            if (user.equals(sT.getName())) {
+                System.out.println("user found");
+                Start.loggedIn = sT;
+            }
+        }
+
+        if (Start.loggedIn != null) {
+
+            if (pass.equals(Start.loggedIn.getPassword())) {
+                System.out.println("Login success!");
+            }
+            else {
+                System.out.println("Incorrect details!");
+            }
+        }
 
     }
 }
