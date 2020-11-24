@@ -7,14 +7,13 @@ import java.awt.event.ActionListener;
 
 public class Menu extends JFrame implements ActionListener {
 
-    private JButton button = new JButton("Hello");
-    private JPanel panel = new JPanel();
-
     public Menu() {
 
+        JButton button = new JButton("Hello");
         button.setBackground(Color.yellow);
         button.addActionListener(this);
 
+        JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
         panel.setLayout(new GridLayout(0, 1));
         panel.add(button);

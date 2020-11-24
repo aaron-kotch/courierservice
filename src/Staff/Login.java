@@ -4,34 +4,26 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Scanner;
-import java.io.File;
 
 public class Login implements ActionListener {
 
     //Frames
     public JFrame frame = new JFrame();
 
-    //Buttons
-    private JButton button = new JButton("Login");
-
-    //Panels
-    private JPanel panel = new JPanel();
-    private JPanel textPanel = new JPanel();
-
     //Text
-    private JTextField username = new JTextField();
-    private JPasswordField password = new JPasswordField();
+    private final JTextField username = new JTextField();
+    private final JPasswordField password = new JPasswordField();
 
     public Login() {
 
+        //Buttons
+        JButton button = new JButton("Login");
         button.setBounds(100, 330, 80, 25);
         button.setBackground(Color.yellow);
         button.addActionListener(this);
 
-        BoxLayout boxLayout = new BoxLayout(textPanel, BoxLayout.Y_AXIS);
+        //Panels
+        JPanel textPanel = new JPanel();
 
         textPanel.setLayout(null);
         username.setBounds(100, 250, 150, 30);
@@ -74,12 +66,17 @@ public class Login implements ActionListener {
 
             if (pass.equals(Start.loggedIn.getPassword())) {
                 System.out.println("Login success!");
+                System.out.println(Start.loggedIn);
             }
             else {
                 System.out.println("Incorrect details!");
             }
-        }
 
+            if (Start.loggedIn.getRole().equals("Managing")) {
+                frame.dispose();
+                new Managing();
+            }
+        }
     }
 }
 

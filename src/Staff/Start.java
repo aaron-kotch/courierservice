@@ -20,6 +20,8 @@ public class Start implements ActionListener{
     public static Staff loggedIn = null;
     public static ArrayList<Staff> staffList = new ArrayList<>();
 
+    static int x, y;
+
     public Start() {
 
         login.setBackground(Color.LIGHT_GRAY);
@@ -49,15 +51,22 @@ public class Start implements ActionListener{
 
             Scanner s = new Scanner(file);
 
+
             while(s.hasNextLine()) {
                 String x = s.nextLine();
                 String y = s.nextLine();
+                String z = s.nextLine();
                 s.nextLine();
-                Staff sT = new Staff(x, y);
+                Staff sT = new Staff(x, y, z);
                 staffList.add(sT);
+                System.out.println(staffList);
             }
 
-            System.out.println(staffList);
+
+            System.out.println(x--);
+            y = x++ + ++x;
+
+            System.out.println(x + y + ++x);
 
         }
 

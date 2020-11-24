@@ -5,28 +5,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Signup implements ActionListener {
 
-    private JFrame frame = new JFrame();
-    private JButton button = new JButton("Login");
-    private JPanel panel = new JPanel();
-    private JPanel textPanel = new JPanel();
-    private JTextField username = new JTextField();
-    private JPasswordField password = new JPasswordField();
+    private final JTextField username = new JTextField();
+    private final JPasswordField password = new JPasswordField();
 
     public Signup() {
 
+        JButton button = new JButton("Login");
         button.setBackground(Color.yellow);
         button.addActionListener(this);
 
-        BoxLayout boxLayout = new BoxLayout(textPanel, BoxLayout.Y_AXIS);
-
+        JPanel textPanel = new JPanel();
         textPanel.setLayout(null);
+
         username.setBounds(100, 250, 150, 30);
         password.setBounds(100, 290, 150, 30);
         button.setBounds(100, 330, 80, 25);
@@ -35,11 +30,12 @@ public class Signup implements ActionListener {
         textPanel.add(button);
 
 
+        JFrame frame = new JFrame();
         frame.setSize(300,500);
         frame.add(textPanel);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Parking System");
+        frame.setTitle("Signup");
         frame.setVisible(true);
 
     }
@@ -66,9 +62,7 @@ public class Signup implements ActionListener {
             FileWriter writer = new FileWriter("customer.txt", true);
             writer.write(user + "\n" + pass + "\n\n");
             writer.close();
-
-
-
+            
         }
 
         catch (IOException fileNotFoundException) {
