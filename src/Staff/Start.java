@@ -62,12 +62,6 @@ public class Start implements ActionListener{
                 System.out.println(staffList);
             }
 
-
-            System.out.println(x--);
-            y = x++ + ++x;
-
-            System.out.println(x + y + ++x);
-
         }
 
         catch (IOException fileNotFoundException) {
