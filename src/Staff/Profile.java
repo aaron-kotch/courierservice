@@ -191,7 +191,7 @@ public class Profile implements ActionListener {
     public void updateData() {
 
         String[] userSplit = userFull.split("/"); //splits line
-        staffData sL = new staffData(userSplit[0], userSplit[1], userSplit[2], userSplit[3], userSplit[4], userSplit[5], userSplit[6]);
+        staffData sL = new staffData(userSplit[0], userSplit[1], userSplit[2], userSplit[3], userSplit[4], userSplit[5], userSplit[6], userSplit[6]);
         newList.add(sL);
         System.out.println(newList);
 

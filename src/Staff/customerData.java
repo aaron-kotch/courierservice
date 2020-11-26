@@ -9,8 +9,9 @@ public class customerData {
     public final String date;
     public final String address;
     public final String payment;
+    public final String status;
 
-    public customerData(String id, String name, String phone, String gender, String date, String address, String payment) {
+    public customerData(String id, String name, String phone, String gender, String date, String address, String payment, String status) {
 
         this.id = id;
         this.name = name;
@@ -19,6 +20,7 @@ public class customerData {
         this.date = date;
         this.address = address;
         this.payment = payment;
+        this.status = status;
 
     }
 
@@ -48,6 +50,10 @@ public class customerData {
 
     public String getPay() {
         return payment;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }
 

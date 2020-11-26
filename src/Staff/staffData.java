@@ -9,8 +9,9 @@ public class staffData {
     public final String role;
     public final String username;
     public final String password;
+    public final String status;
 
-    public staffData(String name, String phone, String id, String email, String role, String username, String password) {
+    public staffData(String id, String name, String phone, String email, String role, String username, String password, String status) {
 
         this.name = name;
         this.phone = phone;
@@ -19,6 +20,7 @@ public class staffData {
         this.role = role;
         this.username = username;
         this.password = password;
+        this.status = status;
 
     }
 
@@ -48,6 +50,10 @@ public class staffData {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }
 

@@ -248,7 +248,7 @@ public class customerList implements ActionListener {
                 staffFull.add(tempString);
                 staffSplit = tempString.split("/"); //splits line
                 s.nextLine();
-                customerData sL = new customerData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6]);
+                customerData sL = new customerData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6], staffSplit[7]);
                 newList.add(sL);
                 System.out.println(staffFull);
             }
@@ -342,7 +342,7 @@ public class customerList implements ActionListener {
                 if (tempString.contains(input)) {
                     staffFull.add(tempString);
                     staffSplit = tempString.split("/"); //splits line
-                    customerData sL = new customerData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6]);
+                    customerData sL = new customerData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6], staffSplit[7]);
                     newList.add(sL);
                     System.out.println(tempString);
                     s.nextLine();

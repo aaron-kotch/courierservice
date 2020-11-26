@@ -1,30 +1,30 @@
 package Staff;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class staffMenu implements ActionListener {
 
     private static final JButton addButton = new JButton("Add Staff");
-    private static final JButton editButton = new JButton("Edit Staff Info");
     private static final JButton viewButton = new JButton("View Staffs");
+    private static final JButton assignButton = new JButton("Assign Orders");
     private static final  JFrame frame = new JFrame();
 
     public staffMenu() {
 
 
         addButton.addActionListener(this);
-        addButton.setBounds(100, 100, 150, 50);
-
 
         viewButton.addActionListener(this);
-        viewButton.setBounds(300, 100, 150, 50);
 
         JPanel panel = new JPanel();
-        panel.setLayout(null);
+
+        panel.setLayout(new GridLayout(2, 2));
         panel.add(addButton);
         panel.add(viewButton);
+        panel.add(assignButton);
 
         frame.setSize(550, 500);
         frame.setTitle("View Staff");
@@ -49,6 +49,11 @@ public class staffMenu implements ActionListener {
         if (e.getSource() == viewButton) {
             frame.dispose();
             new staffList();
+        }
+
+        if (e.getSource() == assignButton) {
+            frame.dispose();
+            new assignOrders();
         }
     }
 }

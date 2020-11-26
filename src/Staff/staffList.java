@@ -135,15 +135,15 @@ public class staffList implements ActionListener {
         // first column
         gbc.gridx = 0;
         gbc.gridy = 0;
-        left.add(nameLabel, gbc);
+        left.add(idLabel, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        left.add(phoneLabel, gbc);
+        left.add(nameLabel, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 2;
-        left.add(idLabel, gbc);
+        left.add(phoneLabel, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -164,15 +164,15 @@ public class staffList implements ActionListener {
         // second column
         gbc.gridx = 1;
         gbc.gridy = 0;
-        left.add(nameResult, gbc);
+        left.add(idResult, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
-        left.add(phoneResult, gbc);
+        left.add(nameResult, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 2;
-        left.add(idResult, gbc);
+        left.add(phoneResult, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 3;
@@ -247,7 +247,7 @@ public class staffList implements ActionListener {
                 staffFull.add(tempString);
                 staffSplit = tempString.split("/"); //splits line
                 s.nextLine();
-                staffData sL = new staffData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6]);
+                staffData sL = new staffData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6], staffSplit[7]);
                 newList.add(sL);
                 System.out.println(staffFull);
             }
@@ -341,7 +341,7 @@ public class staffList implements ActionListener {
                 if (tempString.contains(input)) {
                     staffFull.add(tempString);
                     staffSplit = tempString.split("/"); //splits line
-                    staffData sL = new staffData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6]);
+                    staffData sL = new staffData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6], staffSplit[7]);
                     newList.add(sL);
                     System.out.println(tempString);
                     s.nextLine();
