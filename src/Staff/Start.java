@@ -1,6 +1,8 @@
 package Staff;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.System;
 import javax.swing.*;
@@ -44,9 +46,15 @@ public class Start implements ActionListener{
 
         try {
             File file  = new File("loginData.txt");
+            FileWriter fL  = new FileWriter(file);
+
+            BufferedWriter bw = new BufferedWriter(fL);
 
             if(!file.exists()){
                 file.createNewFile();
+
+                bw.write("admin\nadmin\nManaging\n\n");
+
             }
 
             Scanner s = new Scanner(file);
@@ -61,6 +69,9 @@ public class Start implements ActionListener{
                 staffList.add(sT);
                 System.out.println(staffList);
             }
+
+            bw.close();
+            fL.close();
 
         }
 
