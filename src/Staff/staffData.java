@@ -7,14 +7,18 @@ public class staffData {
     public final String id;
     public final String email;
     public final String role;
+    public final String username;
+    public final String password;
 
-    public staffData(String name, String phone, String id, String email, String role) {
+    public staffData(String name, String phone, String id, String email, String role, String username, String password) {
 
         this.name = name;
         this.phone = phone;
         this.id = id;
         this.email = email;
         this.role = role;
+        this.username = username;
+        this.password = password;
 
     }
 
@@ -36,6 +40,14 @@ public class staffData {
 
     public String getRole() {
         return role;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
 

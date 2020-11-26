@@ -1,5 +1,6 @@
 package Staff;
 
+import java.awt.event.WindowEvent;
 import java.io.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -15,18 +16,22 @@ public class editStaff implements ActionListener {
     private static final String nId = staffList.tId;
     private static final String nEmail = staffList.tEmail;
     private static final String nRole = staffList.tRole;
-
-    public static final String editLine = staffList.toEdit;
+    private static final String nUsername = staffList.tUsername;
+    private static final String nPass = staffList.tPass;
 
     private static final JFrame frame = new JFrame();
     private static final JPanel panel = new JPanel();
     private static final JButton save = new JButton("Save");
+
+    public static final String editLine = staffList.toEdit;
 
     public static final JTextField name = new JTextField(nName);
     public static final JTextField phone = new JTextField(nPhone);
     public static final JTextField id = new JTextField(nId);
     public static final JTextField email = new JTextField(nEmail);
     public static final JTextField role = new JTextField(nRole);
+    public static final JTextField username = new JTextField(nUsername);
+    public static final JTextField password = new JTextField(nPass);
 
     public editStaff() {
 
@@ -35,6 +40,8 @@ public class editStaff implements ActionListener {
         JLabel idLabel = new JLabel("ID number:");
         JLabel emailLabel = new JLabel("E-mail:");
         JLabel roleLabel = new JLabel("Role:");
+        JLabel usernameLabel = new JLabel("Username:");
+        JLabel passeLabel = new JLabel("Password:");
 
         nameLabel.setPreferredSize(new Dimension(50, 100));
         phoneLabel.setPreferredSize(new Dimension(50, 100));
@@ -72,6 +79,14 @@ public class editStaff implements ActionListener {
         gbc.gridx = 0;
         gbc.gridy = 3;
         left.add(emailLabel, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        left.add(roleLabel, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        left.add(roleLabel, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 4;
@@ -125,6 +140,7 @@ public class editStaff implements ActionListener {
 
         if (e.getSource() == save) {
             new editText();
+            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
         }
     }
 }

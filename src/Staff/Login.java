@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class Login implements ActionListener {
 
@@ -13,6 +16,8 @@ public class Login implements ActionListener {
     //Text
     private final JTextField username = new JTextField();
     private final JPasswordField password = new JPasswordField();
+
+    public static String currentUser = null;
 
     public Login() {
 
@@ -46,6 +51,43 @@ public class Login implements ActionListener {
         new Login();
     }
 
+    public void getData() {
+
+        String user = username.getText();
+        String pass = String.valueOf(password.getPassword());
+        String tempString;
+
+        try {
+
+            File file = new File("staffDetails.txt");
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            Scanner s = new Scanner(file);
+
+            while (s.hasNextLine()) {
+                tempString = s.next();
+
+                if (tempString.contains(user) && tempString.contains(pass)) {
+                    currentUser = tempString;
+                }
+
+                s.nextLine();
+
+            }
+
+            System.out.println("Current User: " + currentUser);
+
+            s.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -75,6 +117,13 @@ public class Login implements ActionListener {
             if (Start.loggedIn.getRole().equals("Managing")) {
                 frame.dispose();
                 new Managing();
+                getData();
+            }
+
+            else if (Start.loggedIn.getRole().equals("Delivery")) {
+                frame.dispose();
+                new Delivery();
+                getData();
             }
         }
     }

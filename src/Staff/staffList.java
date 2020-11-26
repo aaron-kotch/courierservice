@@ -41,6 +41,8 @@ public class staffList implements ActionListener {
     public static String tId;
     public static String tEmail;
     public static String tRole;
+    public static String tUsername;
+    public static String tPass;
 
     public static String toEdit;
 
@@ -66,9 +68,9 @@ public class staffList implements ActionListener {
         gbc.weightx = 10;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
+        //search panel
         gbc.insets = new Insets(0, 10, 0, 0);
         searchPanel.add(searchTF, gbc);
-
         gbc.gridx = 2;
         gbc.gridy = 0;
         gbc.weightx = 1;
@@ -225,7 +227,7 @@ public class staffList implements ActionListener {
                 staffFull.add(tempString);
                 staffSplit = tempString.split("/"); //splits line
                 s.nextLine();
-                staffData sL = new staffData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4]);
+                staffData sL = new staffData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6]);
                 newList.add(sL);
                 System.out.println(staffFull);
             }
@@ -319,7 +321,7 @@ public class staffList implements ActionListener {
                 if (tempString.contains(input)) {
                     staffFull.add(tempString);
                     staffSplit = tempString.split("/"); //splits line
-                    staffData sL = new staffData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4]);
+                    staffData sL = new staffData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6]);
                     newList.add(sL);
                     System.out.println(tempString);
                     s.nextLine();
@@ -428,6 +430,8 @@ public class staffList implements ActionListener {
                         tId = sD.getId();
                         tEmail = sD.getEmail();
                         tRole = sD.getRole();
+                        tUsername = sD.getUsername();
+                        tPass = sD.getPassword();
 
                         toEdit = staffFull.get(i);
 

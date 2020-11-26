@@ -43,7 +43,7 @@ public class Start implements ActionListener{
         startFrame.setVisible(true);
 
         try {
-            File file  = new File("customer.txt");
+            File file  = new File("loginData.txt");
 
             if(!file.exists()){
                 file.createNewFile();
