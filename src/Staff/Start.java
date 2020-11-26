@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Start implements ActionListener{
+public class Start{
 
     private static final JFrame startFrame = new JFrame();
     private static final JPanel panel = new JPanel();
@@ -25,24 +25,6 @@ public class Start implements ActionListener{
     static int x, y;
 
     public Start() {
-
-        login.setBackground(Color.LIGHT_GRAY);
-        login.addActionListener(this);
-
-        signup.setBackground(Color.LIGHT_GRAY);
-        signup.addActionListener(this);
-
-        panel.setBorder(BorderFactory.createEmptyBorder(100, 100, 100, 100));
-        panel.setLayout(new GridLayout(2, 0));
-        panel.add(login);
-        panel.add(signup);
-
-        startFrame.setSize(300,300);
-        startFrame.add(panel);
-        startFrame.setLocationRelativeTo(null);
-        startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        startFrame.setTitle("Parking System");
-        startFrame.setVisible(true);
 
         try {
             File file  = new File("loginData.txt");
@@ -82,25 +64,11 @@ public class Start implements ActionListener{
             fileNotFoundException.printStackTrace();
         }
 
+        new Login();
     }
 
     public static void main(String[] args) {
         new Start();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() == login) {
-            startFrame.dispose();
-            new Login();
-        }
-
-        else if (e.getSource() == signup) {
-
-            startFrame.dispose();
-            new Signup();
-        }
-
-    }
 }

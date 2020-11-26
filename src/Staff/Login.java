@@ -23,23 +23,43 @@ public class Login implements ActionListener {
 
         //Buttons
         JButton button = new JButton("Login");
-        button.setBounds(100, 330, 80, 25);
-        button.setBackground(Color.yellow);
+        button.setBackground(new Color(130, 177, 255));
         button.addActionListener(this);
 
+        //Labels
+        JLabel usernameLabel = new JLabel("Username: ");
+        JLabel passLabel = new JLabel("Password: ");
+
+
         //Panels
-        JPanel textPanel = new JPanel();
+        JPanel panel = new JPanel(new GridLayout(3, 1));
+        JPanel topPanel = new JPanel(new BorderLayout());
+        JPanel centPanel = new JPanel(new BorderLayout());
+        JPanel bottPanel = new JPanel(new BorderLayout());
 
-        textPanel.setLayout(null);
-        username.setBounds(100, 250, 150, 30);
-        password.setBounds(100, 290, 150, 30);
+        username.setPreferredSize(new Dimension(100, 30));
+        password.setPreferredSize(new Dimension(100, 30));
 
-        textPanel.add(username);
-        textPanel.add(password);
-        textPanel.add(button);
+        topPanel.add(username, BorderLayout.PAGE_END);
+        topPanel.add(usernameLabel, BorderLayout.PAGE_START);
 
-        frame.setSize(300,500);
-        frame.add(textPanel);
+        centPanel.add(password, BorderLayout.PAGE_END);
+        centPanel.add(passLabel, BorderLayout.PAGE_START);
+        bottPanel.add(button);
+
+        usernameLabel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+        passLabel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+
+        topPanel.setBorder(BorderFactory.createEmptyBorder(20,20,0,20));
+        centPanel.setBorder(BorderFactory.createEmptyBorder(10,20,10,20));
+        bottPanel.setBorder(BorderFactory.createEmptyBorder(10,250,20,20));
+
+        panel.add(topPanel);
+        panel.add(centPanel);
+        panel.add(bottPanel);
+
+        frame.setSize(350,250);
+        frame.add(panel, BorderLayout.CENTER);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Login");
@@ -101,6 +121,13 @@ public class Login implements ActionListener {
             if (user.equals(sT.getName())) {
                 System.out.println("user found");
                 Start.loggedIn = sT;
+            }
+
+            else {
+
+                JFrame f = new JFrame();
+                JOptionPane.showMessageDialog(f, "Incorrect Password", "Alert", JOptionPane.WARNING_MESSAGE);
+                break;
             }
         }
 

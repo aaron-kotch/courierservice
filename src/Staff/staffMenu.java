@@ -10,6 +10,7 @@ public class staffMenu implements ActionListener {
     private static final JButton addButton = new JButton("Add Staff");
     private static final JButton viewButton = new JButton("View Staffs");
     private static final JButton assignButton = new JButton("Assign Orders");
+    private static final JButton feedButton = new JButton("Assign Orders");
     private static final  JFrame frame = new JFrame();
 
     public staffMenu() {
@@ -25,6 +26,7 @@ public class staffMenu implements ActionListener {
         panel.add(addButton);
         panel.add(viewButton);
         panel.add(assignButton);
+        panel.add(feedButton);
 
         frame.setSize(550, 500);
         frame.setTitle("View Staff");
@@ -54,6 +56,11 @@ public class staffMenu implements ActionListener {
         if (e.getSource() == assignButton) {
             frame.dispose();
             new assignOrders();
+        }
+
+        if (e.getSource() == feedButton) {
+            frame.dispose();
+            new viewFeedback();
         }
     }
 }

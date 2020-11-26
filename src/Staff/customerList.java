@@ -244,6 +244,7 @@ public class customerList implements ActionListener {
             Scanner s = new Scanner(file);
 
             while (s.hasNextLine()) {
+
                 tempString = s.next();
                 staffFull.add(tempString);
                 staffSplit = tempString.split("/"); //splits line
@@ -251,6 +252,7 @@ public class customerList implements ActionListener {
                 customerData sL = new customerData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6], staffSplit[7]);
                 newList.add(sL);
                 System.out.println(staffFull);
+
             }
 
             s.close();
@@ -440,9 +442,9 @@ public class customerList implements ActionListener {
                         System.out.println(" index: " + i);
 
                         customerData sD = newList.get(i);
-                        idResult.setText(sD.getPhone());
-                        nameResult.setText(sD.getId());
-                        phoneResult.setText(sD.getName());
+                        idResult.setText(sD.getId());
+                        nameResult.setText(sD.getName());
+                        phoneResult.setText(sD.getPhone());
                         genderResult.setText(sD.getGender());
                         dateResult.setText(sD.getDate());
                         addResult.setText(sD.getAdd());
