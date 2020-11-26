@@ -1,6 +1,7 @@
 package Staff;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,14 +17,12 @@ public class Managing implements ActionListener {
 
         // buttons
         staffButton.addActionListener(this);
-        staffButton.setBounds(100, 100, 150, 50);
 
         custButton.addActionListener(this);
-        custButton.setBounds(300, 100, 150, 50);
 
         // panel
         JPanel panel = new JPanel();
-        panel.setLayout(null);
+        panel.setLayout(new GridLayout(1, 2));
         panel.add(staffButton);
         panel.add(custButton);
 

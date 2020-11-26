@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class staffList implements ActionListener {
+public class customerList implements ActionListener {
 
     JTextArea output;
     ListSelectionModel listSelectionModel;
@@ -19,7 +19,7 @@ public class staffList implements ActionListener {
     public static ArrayList<String> staffFull = new ArrayList<>();
     public static List<String> getData = new ArrayList<>();
     public static String[] staffSplit;
-    public static ArrayList<staffData> newList = new ArrayList<>();
+    public static ArrayList<customerData> newList = new ArrayList<>();
 
     public static JTextField searchTF = new JTextField();
     public static JButton searchButton = new JButton("Search");
@@ -28,23 +28,23 @@ public class staffList implements ActionListener {
     public static JButton editButton = new JButton("Edit");
     public static JScrollPane scrollPane = new JScrollPane();
 
+    public static JLabel idResult = new JLabel();
     public static JLabel nameResult = new JLabel();
     public static JLabel phoneResult = new JLabel();
-    public static JLabel idResult = new JLabel();
-    public static JLabel emailResult= new JLabel();
-    public static JLabel roleResult = new JLabel();
-    public static JLabel usernameResult = new JLabel();
-    public static JLabel passwordResult = new JLabel();
+    public static JLabel genderResult = new JLabel();
+    public static JLabel dateResult= new JLabel();
+    public static JLabel addResult = new JLabel();
+    public static JLabel payResult = new JLabel();
 
     public static JPanel topPanel = new JPanel();
 
+    public static String tId;
     public static String tName;
     public static String tPhone;
-    public static String tId;
-    public static String tEmail;
-    public static String tRole;
-    public static String tUsername;
-    public static String tPass;
+    public static String tGender;
+    public static String tDate;
+    public static String tAddress;
+    public static String tPay;
 
     public static String toEdit;
 
@@ -57,7 +57,7 @@ public class staffList implements ActionListener {
 
     public static String deleteLine;
 
-    public staffList() {
+    public customerList() {
         updateStaff();
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -81,14 +81,14 @@ public class staffList implements ActionListener {
         searchPanel.add(searchButton, gbc);
         searchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
 
-        frame = new JFrame("Staff Details");
+        frame = new JFrame("Customer Details");
 
         int i = 0;
 
         while (i < newList.size()) {
 
-            staffData sD = newList.get(i);
-            String data = sD.getId() + " | " + sD.getName() + " | " + sD.getPhone() + " | " + sD.getEmail() + " | " + sD.getRole() + " | " + sD.getUsername() + " | " + sD.getPassword();
+            customerData sD = newList.get(i);
+            String data = sD.getId() + " | " + sD.getName() + " | " + sD.getPhone() + " | " + sD.getGender() + " | " + sD.getDate() + " | " + sD.getAdd() + " | " + sD.getPay();
             getData.add(data);
             System.out.println(data);
             model.addElement(getData.get(i));
@@ -119,13 +119,13 @@ public class staffList implements ActionListener {
         topPanel.setMinimumSize(new Dimension(400, 200));
         topPanel.setMaximumSize(new Dimension(400, 200));
 
+        JLabel idLabel = new JLabel("ID number:");
         JLabel nameLabel = new JLabel("Name:");
         JLabel phoneLabel = new JLabel("Contact No.:");
-        JLabel idLabel = new JLabel("ID number:");
-        JLabel emailLabel = new JLabel("E-mail:");
-        JLabel roleLabel = new JLabel("Role:");
-        JLabel usernameLabel = new JLabel("Username:");
-        JLabel passLabel = new JLabel("Password:");
+        JLabel genderLabel = new JLabel("Gender:");
+        JLabel dateLabel = new JLabel("Order date:");
+        JLabel addLabel = new JLabel("Address:");
+        JLabel payLabel = new JLabel("Payment:");
 
         JPanel left = new JPanel(new GridBagLayout());
 
@@ -135,60 +135,60 @@ public class staffList implements ActionListener {
         // first column
         gbc.gridx = 0;
         gbc.gridy = 0;
-        left.add(nameLabel, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        left.add(phoneLabel, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 2;
         left.add(idLabel, gbc);
 
         gbc.gridx = 0;
+        gbc.gridy = 1;
+        left.add(nameLabel, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        left.add(phoneLabel, gbc);
+
+        gbc.gridx = 0;
         gbc.gridy = 3;
-        left.add(emailLabel, gbc);
+        left.add(genderLabel, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 4;
-        left.add(roleLabel, gbc);
+        left.add(dateLabel, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 5;
-        left.add(usernameLabel, gbc);
+        left.add(addLabel, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 6;
-        left.add(passLabel, gbc);
+        left.add(payLabel, gbc);
 
         // second column
         gbc.gridx = 1;
         gbc.gridy = 0;
-        left.add(nameResult, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        left.add(phoneResult, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 2;
         left.add(idResult, gbc);
 
         gbc.gridx = 1;
+        gbc.gridy = 1;
+        left.add(nameResult, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        left.add(phoneResult, gbc);
+
+        gbc.gridx = 1;
         gbc.gridy = 3;
-        left.add(emailResult, gbc);
+        left.add(genderResult, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 4;
-        left.add(roleResult, gbc);
+        left.add(dateResult, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 5;
-        left.add(usernameResult, gbc);
+        left.add(addResult, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 6;
-        left.add(passwordResult, gbc);
+        left.add(payResult, gbc);
 
         JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
         buttonPanel.add(addButton);
@@ -223,18 +223,19 @@ public class staffList implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new staffList();
+        new customerList();
 
     }
 
     public void updateStaff() {
         newList.clear();
 
+
         String tempString;
 
         try {
 
-            File file = new File("staffDetails.txt");
+            File file = new File("CustomerDetails.txt");
 
             if (!file.exists()) {
                 file.createNewFile();
@@ -247,7 +248,7 @@ public class staffList implements ActionListener {
                 staffFull.add(tempString);
                 staffSplit = tempString.split("/"); //splits line
                 s.nextLine();
-                staffData sL = new staffData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6]);
+                customerData sL = new customerData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6]);
                 newList.add(sL);
                 System.out.println(staffFull);
             }
@@ -267,8 +268,8 @@ public class staffList implements ActionListener {
 
             int index = 0;
 
-            File file = new File("staffDetails.txt");
-            File tempFile = new File("tempStaffFile.txt");
+            File file = new File("CustomerDetails.txt");
+            File tempFile = new File("tempCustFile.txt");
 
             Scanner s = new Scanner(file);
 
@@ -324,7 +325,7 @@ public class staffList implements ActionListener {
 
         try {
 
-            File file = new File("staffDetails.txt");
+            File file = new File("CustomerDetails.txt");
 
             if (!file.exists()) {
                 file.createNewFile();
@@ -341,7 +342,7 @@ public class staffList implements ActionListener {
                 if (tempString.contains(input)) {
                     staffFull.add(tempString);
                     staffSplit = tempString.split("/"); //splits line
-                    staffData sL = new staffData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6]);
+                    customerData sL = new customerData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6]);
                     newList.add(sL);
                     System.out.println(tempString);
                     s.nextLine();
@@ -352,8 +353,8 @@ public class staffList implements ActionListener {
 
                 while (i < newList.size()) {
 
-                    staffData sD = newList.get(i);
-                    String data = sD.getId() + " | " + sD.getName() + " | " + sD.getPhone() + " | " + sD.getEmail() + " | " + sD.getRole();
+                    customerData sD = newList.get(i);
+                    String data = sD.getId() + " | " + sD.getName() + " | " + sD.getPhone() + " | " + sD.getGender() + " | " + sD.getDate() + " | " + sD.getAdd() + " | " + sD.getPay();
                     getData.add(data);
                     System.out.println(data);
                     model.addElement(getData.get(index));
@@ -438,22 +439,22 @@ public class staffList implements ActionListener {
                     if (listSel.isSelectedIndex(i)) {
                         System.out.println(" index: " + i);
 
-                        staffData sD = newList.get(i);
-                        nameResult.setText(sD.getName());
-                        phoneResult.setText(sD.getPhone());
-                        idResult.setText(sD.getId());
-                        emailResult.setText(sD.getEmail());
-                        roleResult.setText(sD.getRole());
-                        usernameResult.setText(sD.getUsername());
-                        passwordResult.setText(sD.getPassword());
+                        customerData sD = newList.get(i);
+                        idResult.setText(sD.getPhone());
+                        nameResult.setText(sD.getId());
+                        phoneResult.setText(sD.getName());
+                        genderResult.setText(sD.getGender());
+                        dateResult.setText(sD.getDate());
+                        addResult.setText(sD.getAdd());
+                        payResult.setText("RM " + sD.getPay());
 
-                        tName = sD.getName();
-                        tPhone = sD.getRole();
                         tId = sD.getId();
-                        tEmail = sD.getEmail();
-                        tRole = sD.getRole();
-                        tUsername = sD.getUsername();
-                        tPass = sD.getPassword();
+                        tName = sD.getName();
+                        tPhone = sD.getPhone();
+                        tGender = sD.getGender();
+                        tDate = sD.getDate();
+                        tAddress = sD.getAdd();
+                        tPay = sD.getPay();
 
                         toEdit = staffFull.get(i);
 

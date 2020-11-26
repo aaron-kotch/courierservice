@@ -7,14 +7,18 @@ public class Personnel {
     protected String name;
     protected String phoneNum;
     protected String gender;
+    protected String orderDate;
     protected String address;
 
-    public Personnel(String name, String phoneNum, String gender, String address){
+    public Personnel(String name, String phoneNum, String gender, String orderDate, String address){
         this.name = name;
         this.phoneNum = phoneNum;
         this.gender = gender;
+        this.orderDate = orderDate;
         this.address = address;
     }
+
+
 
     public String getName() {
         return name;
@@ -38,6 +42,14 @@ public class Personnel {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
     }
 
     public String getAddress() {
