@@ -29,8 +29,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
-
-public class CustomerForm extends JFrame implements ActionListener{
+public class CustomerForm extends JFrame implements ActionListener {
 
     // Components of the Form
     private Container c;
@@ -221,6 +220,9 @@ public class CustomerForm extends JFrame implements ActionListener{
         setVisible(true);
     }
 
+    public static void main(String[] args) {
+        new CustomerForm();
+    }
     // method actionPerformed()
     // to get the action performed
     // by the user and act accordingly

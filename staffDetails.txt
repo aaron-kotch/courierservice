@@ -1,2 +1,3 @@
-aaronkotch/12345/Aaron/0178792632/001/aaron@mail.com/Delivery
-guanoshit/12345/guano/01828323/0002/guano@mail.com/Delivery
+Aaron/Delivery/aaron@gmail.com/001/Delivery/aaronkotch/12345
+Guano/0143252324/guano@gmail.com/002/Delivery/guanoshit/12345
+Epoi/0182723723/epoi@mail.com/003/Managing/epoi29/12345

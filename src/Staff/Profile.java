@@ -1,24 +1,25 @@
 package Staff;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Profile {
+public class Profile implements ActionListener {
 
     ListSelectionModel listSelectionModel;
 
-    private JFrame frame = new JFrame();
-    private JPanel leftPanel;
-    private JPanel rightPanel;
-
     JTextArea output;
+
+    JFrame frame = new JFrame();
 
     public static JLabel name = new JLabel("Name:");
     public static JLabel phone = new JLabel("Contact number:");
@@ -38,6 +39,10 @@ public class Profile {
     public static JLabel usernameResult = new JLabel();
     public static JLabel passResult = new JLabel();
 
+    public static JButton editButton = new JButton("Edit");
+    public static JButton updateButton = new JButton("Update");
+    public static JButton backButton = new JButton("Back");
+
     public static String tName;
     public static String tPhone;
     public static String tId;
@@ -56,6 +61,7 @@ public class Profile {
     public static ArrayList<staffData> newList = new ArrayList<>();
     public static ArrayList<feedData> newFeedList = new ArrayList<>();
     public static List<String> getData = new ArrayList<>();
+    public static List<String> getModelData = new ArrayList<>();
 
     //feedback
     public static ArrayList<String> feedback = new ArrayList<>();
@@ -72,14 +78,21 @@ public class Profile {
         GridBagConstraints gbc = new GridBagConstraints();
 
         JPanel mainPanel = new JPanel(new GridLayout(2, 1));
+        JPanel panel = new JPanel(new GridLayout(1, 2));
+        JPanel leftPanel = new JPanel(new GridBagLayout());
+        JPanel bottomPanel = new JPanel(new BorderLayout());
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 5));
 
-        JPanel panel = new JPanel(new GridLayout(1, 3));
-        JPanel bottomPanel = new JPanel();
-        leftPanel = new JPanel(new GridBagLayout());
-        rightPanel = new JPanel(new GridLayout(5, 1));
+        editButton.addActionListener(this);
+        updateButton.addActionListener(this);
+        backButton.addActionListener(this);
+
+        buttonPanel.add(backButton);
+        buttonPanel.add(editButton);
+        buttonPanel.add(updateButton);
 
         gbc.anchor = GridBagConstraints.WEST;
-        gbc.insets = new Insets(10, 50, 10, 20);
+        gbc.insets = new Insets(10, 20, 10, 20);
 
         // first column
         gbc.gridx = 0;
@@ -139,24 +152,30 @@ public class Profile {
         gbc.gridy = 6;
         leftPanel.add(passResult, gbc);
 
-        panel.setLayout(new GridLayout(1, 2));
         panel.add(leftPanel);
-        panel.add(rightPanel);
 
         output = new JTextArea(10, 10);
         output.setEditable(false);
-        output.setVisible(true);
         JScrollPane outputPane = new JScrollPane(output, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         scrollPane.setViewportView(sList);
         sList.setLayoutOrientation(JList.VERTICAL);
         panel.add(scrollPane);
 
-        mainPanel.add(outputPane);
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Orders"));
+        leftPanel.setBorder(BorderFactory.createTitledBorder("Details"));
+        outputPane.setBorder(BorderFactory.createTitledBorder("Feedbacks"));
+
+        bottomPanel.add(outputPane, BorderLayout.CENTER);
+        bottomPanel.add(buttonPanel, BorderLayout.PAGE_END);
+        mainPanel.add(panel);
+        mainPanel.add(bottomPanel);
+
+
 
         // frame
-        frame.add(panel);
-        frame.setSize(550, 500);
+        frame.add(mainPanel);
+        frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Profile");
         frame.setLocationRelativeTo(null);
@@ -199,6 +218,11 @@ public class Profile {
 
     public void getFeedback() {
 
+        model.removeAllElements();
+        newFeedList.clear();
+
+        System.out.println("STARTLINE");
+
         String tempString;
 
         try {
@@ -218,12 +242,16 @@ public class Profile {
 
                     feedback.add(tempString);
                     feedSplit = tempString.split("/"); //splits line
-                    s.nextLine();
                     feedData sF = new feedData(feedSplit[0], feedSplit[1], feedSplit[2], feedSplit[3], feedSplit[4]);
                     newFeedList.add(sF);
-                    System.out.println(newList);
+                    System.out.println(newFeedList);
+                    s.nextLine();
                 }
+
+                System.out.println("NEWLINE");
             }
+
+            System.out.println("FEED LIST: " + tId);
 
             s.close();
 
@@ -234,11 +262,14 @@ public class Profile {
                 feedData sD = newFeedList.get(i);
                 String data = sD.getOrderId() + " | " + sD.getStaffId() + " | " + sD.getName() + " | " + sD.getRating() + " | " + sD.getComment();
                 getData.add(data);
+                getModelData.add(sD.getOrderId());
                 System.out.println(data);
-                model.addElement(getData.get(i));
+                model.addElement(String.valueOf(getModelData.get(i)));
                 i++;
 
             }
+
+
 
             sList = new JList<>(model);
 
@@ -254,16 +285,36 @@ public class Profile {
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == editButton) {
+
+            editStaff.fromWhere = "Profile";
+            editStaff.editLine = userFull;
+            System.out.println("USER " + userFull);
+            new editStaff();
+
+        }
+
+        if (e.getSource() == backButton) {
+            frame.dispose();
+            new Delivery();
+        }
+    }
+
     class SharedListSelectionHandler implements ListSelectionListener {
         @Override
         public void valueChanged(ListSelectionEvent e) {
             ListSelectionModel listSel = (ListSelectionModel)e.getSource();
 
+            output.setText(null);
+
             int firstIndex = e.getFirstIndex();
 
             if (listSel.isSelectionEmpty()) {
                 isSelect = true;
-                System.out.println(" <none> ");
+                output.append(" <none> ");
             }
             else {
                 isSelect = false;
@@ -280,6 +331,8 @@ public class Profile {
                         fName = sD.getName();
                         fRating = sD.getRating();
                         fComment = sD.getComment();
+
+                        output.append(fOrderId + "\n" + fName + "\n" + fRating + "\n" + fComment);
 
 
                     }

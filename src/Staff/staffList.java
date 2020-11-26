@@ -392,6 +392,7 @@ public class staffList implements ActionListener {
 
         if (e.getSource() == editButton) {
 
+            editStaff.fromWhere = "staffList";
             new editStaff();
 
 
@@ -434,6 +435,8 @@ public class staffList implements ActionListener {
                         tPass = sD.getPassword();
 
                         toEdit = staffFull.get(i);
+
+                        editStaff.editLine = toEdit;
 
                         System.out.println(toEdit);
 

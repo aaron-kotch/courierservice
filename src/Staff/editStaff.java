@@ -11,6 +11,8 @@ import java.util.Scanner;
 
 public class editStaff implements ActionListener {
 
+    public static String fromWhere;
+
     private static final String nName = staffList.tName;
     private static final String nPhone = staffList.tPhone;
     private static final String nId = staffList.tId;
@@ -19,21 +21,52 @@ public class editStaff implements ActionListener {
     private static final String nUsername = staffList.tUsername;
     private static final String nPass = staffList.tPass;
 
+    private static final String pName = Profile.tName;
+    private static final String pPhone = Profile.tPhone;
+    private static final String pId = Profile.tId;
+    private static final String pEmail = Profile.tEmail;
+    private static final String pRole = Profile.tRole;
+    private static final String pUsername = Profile.tUsername;
+    private static final String pPass = Profile.tPass;
+
     private static final JFrame frame = new JFrame();
     private static final JPanel panel = new JPanel();
     private static final JButton save = new JButton("Save");
 
-    public static final String editLine = staffList.toEdit;
+    public static String editLine;
 
-    public static final JTextField name = new JTextField(nName);
-    public static final JTextField phone = new JTextField(nPhone);
-    public static final JTextField id = new JTextField(nId);
-    public static final JTextField email = new JTextField(nEmail);
-    public static final JTextField role = new JTextField(nRole);
-    public static final JTextField username = new JTextField(nUsername);
-    public static final JTextField password = new JTextField(nPass);
+    public static final JTextField name = new JTextField();
+    public static final JTextField phone = new JTextField();
+    public static final JTextField id = new JTextField();
+    public static final JTextField email = new JTextField();
+    public static final JTextField role = new JTextField();
+    public static final JTextField username = new JTextField();
+    public static final JPasswordField password = new JPasswordField();
 
     public editStaff() {
+
+        if (fromWhere.equals("staffList")) {
+            name.setText(nName);
+            phone.setText(nPhone);
+            id.setText(nId);
+            email.setText(nEmail);
+            role.setText(nRole);
+            username.setText(nUsername);
+            password.setText(nPass);
+
+            System.out.println("from staffList");
+        }
+
+        else if (fromWhere.equals("Profile")) {
+            name.setText(pName);
+            phone.setText(pPhone);
+            id.setText(pId);
+            email.setText(pEmail);
+            role.setText(pRole);
+            username.setText(pUsername);
+            password.setText(pPass);
+            System.out.println("from profile");
+        }
 
         JLabel nameLabel = new JLabel("Name:");
         JLabel phoneLabel = new JLabel("Contact number:");
@@ -41,7 +74,7 @@ public class editStaff implements ActionListener {
         JLabel emailLabel = new JLabel("E-mail:");
         JLabel roleLabel = new JLabel("Role:");
         JLabel usernameLabel = new JLabel("Username:");
-        JLabel passeLabel = new JLabel("Password:");
+        JLabel passLabel = new JLabel("Password:");
 
         nameLabel.setPreferredSize(new Dimension(50, 100));
         phoneLabel.setPreferredSize(new Dimension(50, 100));
@@ -85,12 +118,12 @@ public class editStaff implements ActionListener {
         left.add(roleLabel, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 4;
-        left.add(roleLabel, gbc);
+        gbc.gridy = 5;
+        left.add(usernameLabel, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 4;
-        left.add(roleLabel, gbc);
+        gbc.gridy = 6;
+        left.add(passLabel, gbc);
 
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -116,13 +149,21 @@ public class editStaff implements ActionListener {
 
         gbc.gridx = 1;
         gbc.gridy = 5;
+        left.add(username, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 6;
+        left.add(password, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 7;
         left.add(save, gbc);
 
         panel.setLayout(new BorderLayout());
         panel.add(left, BorderLayout.CENTER);
 
         // frame
-        frame.setSize(300, 300);
+        frame.setSize(300, 400);
         frame.setTitle("Manage");
         frame.setLocationRelativeTo(null);
         frame.add(panel);
@@ -152,6 +193,8 @@ class editText {
     String getId = editStaff.id.getText();
     String getEmail = editStaff.email.getText();
     String getRole = editStaff.role.getText();
+    String getUsername = editStaff.username.getText();
+    String getPass = editStaff.password.getText();
 
     String newData;
 
@@ -175,7 +218,7 @@ class editText {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile, true));
 
-            newData = getName + "/" + getPhone + "/" + getId + "/" + getEmail + "/" + getRole;
+            newData = getName + "/" + getPhone + "/" + getId + "/" + getEmail + "/" + getRole + "/" + getUsername + "/" + getPass;
 
             System.out.println("DATA " + newData);
 

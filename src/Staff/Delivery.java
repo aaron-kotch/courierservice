@@ -13,7 +13,6 @@ public class Delivery implements ActionListener {
     public Delivery() {
 
         // buttons
-        profButton.addActionListener(this);
         profButton.setBounds(100, 100, 150, 50);
 
         taskButton.addActionListener(this);
@@ -52,7 +51,7 @@ public class Delivery implements ActionListener {
 
         if (e.getSource() == taskButton) {
             
-
+            System.out.println("No action");
         }
     }
 }
