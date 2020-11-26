@@ -46,14 +46,18 @@ public class Start implements ActionListener{
 
         try {
             File file  = new File("loginData.txt");
-            FileWriter fL  = new FileWriter(file);
-
-            BufferedWriter bw = new BufferedWriter(fL);
 
             if(!file.exists()){
+                FileWriter fL  = new FileWriter(file);
+
+                BufferedWriter bw = new BufferedWriter(fL);
+
                 file.createNewFile();
 
                 bw.write("admin\nadmin\nManaging\n\n");
+
+                bw.close();
+                fL.close();
 
             }
 
@@ -70,8 +74,7 @@ public class Start implements ActionListener{
                 System.out.println(staffList);
             }
 
-            bw.close();
-            fL.close();
+            s.close();
 
         }
 
