@@ -1,2 +1,4 @@
 #OD1/Guano/0178727323/Male/1-Jan-1990/Lot4302yes/100/assigned
-#OD2/Guano/0178727323/Male/1-Jan-1990/Lot4302yes/100/notSigned
+#OD2/asdasd/asdasd/Male/1-Jan-1985/asdsad/50/notSigned
+#OD3/asdasd/123123123/Male/1-Jan-1985/asdasda/1000/notSigned
+#OD4/DJLX/012031203123/Male/1-Jan-1985/KualaLumpur/200/notSigned

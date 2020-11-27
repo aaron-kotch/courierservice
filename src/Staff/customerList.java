@@ -19,14 +19,11 @@ public class customerList implements ActionListener {
     public static ArrayList<String> staffFull = new ArrayList<>();
     public static List<String> getData = new ArrayList<>();
     public static String[] staffSplit;
-    public static ArrayList<customerData> newList = new ArrayList<>();
+    public static ArrayList<Customer> newList = new ArrayList<>();
 
     public static JTextField searchTF = new JTextField();
     public static JButton searchButton = new JButton("Search");
     public static JButton backButton = new JButton("Back");
-    public static JButton delButton = new JButton("Delete");
-    public static JButton addButton = new JButton("Add");
-    public static JButton editButton = new JButton("Edit");
     public static JScrollPane scrollPane = new JScrollPane();
 
     public static JLabel idResult = new JLabel();
@@ -88,7 +85,7 @@ public class customerList implements ActionListener {
 
         while (i < newList.size()) {
 
-            customerData sD = newList.get(i);
+            Customer sD = newList.get(i);
             String data = sD.getId() + " | " + sD.getName() + " | " + sD.getPhone() + " | " + sD.getGender() + " | " + sD.getDate() + " | " + sD.getAdd() + " | " + sD.getPay();
             getData.add(data);
             System.out.println(data);
@@ -193,16 +190,8 @@ public class customerList implements ActionListener {
 
         JPanel buttonPanel = new JPanel(new GridLayout(4, 1));
         buttonPanel.add(backButton);
-        buttonPanel.add(addButton);
-        buttonPanel.add(editButton);
-        buttonPanel.add(delButton);
 
-        addButton.addActionListener(this);
-        editButton.addActionListener(this);
         backButton.addActionListener(this);
-
-        delButton.addActionListener(this);
-        delButton.setBackground(Color.red);
 
         output = new JTextArea(10, 10);
         output.setEditable(false);
@@ -247,7 +236,7 @@ public class customerList implements ActionListener {
                 staffFull.add(tempString);
                 staffSplit = tempString.split("/"); //splits line
                 s.nextLine();
-                customerData sL = new customerData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6], staffSplit[7]);
+                Customer sL = new Customer(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6], staffSplit[7]);
                 newList.add(sL);
                 System.out.println(staffFull);
 
@@ -342,7 +331,7 @@ public class customerList implements ActionListener {
                 if (tempString.contains(input)) {
                     staffFull.add(tempString);
                     staffSplit = tempString.split("/"); //splits line
-                    customerData sL = new customerData(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6], staffSplit[7]);
+                    Customer sL = new Customer(staffSplit[0], staffSplit[1], staffSplit[2], staffSplit[3], staffSplit[4], staffSplit[5], staffSplit[6], staffSplit[7]);
                     newList.add(sL);
                     System.out.println(tempString);
                     s.nextLine();
@@ -353,7 +342,7 @@ public class customerList implements ActionListener {
 
                 while (i < newList.size()) {
 
-                    customerData sD = newList.get(i);
+                    Customer sD = newList.get(i);
                     String data = sD.getId() + " | " + sD.getName() + " | " + sD.getPhone() + " | " + sD.getGender() + " | " + sD.getDate() + " | " + sD.getAdd() + " | " + sD.getPay();
                     getData.add(data);
                     System.out.println(data);
@@ -384,44 +373,6 @@ public class customerList implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == delButton) {
-            int index = sList.getSelectedIndex();
-            model.remove(index);
-
-            deleteLine = staffFull.get(index);
-            System.out.println("HOLA " + deleteLine);
-            removeLine();
-            updateStaff();
-
-            int size = model.getSize();
-
-            if (index == model.getSize()) {
-                index--;
-            }
-            sList.setSelectedIndex(index);
-            sList.ensureIndexIsVisible(index);
-
-        }
-
-        if (e.getSource() == searchButton) {
-            filterLine();
-        }
-
-        if (e.getSource() == addButton) {
-
-            clearListener();
-            frame.dispose();
-            new addStaff();
-        }
-
-        if (e.getSource() == editButton) {
-
-            clearListener();
-            frame.dispose();
-            editStaff.fromWhere = "staffList";
-            new editStaff();
-
-        }
 
         if (e.getSource() == backButton) {
 
@@ -435,8 +386,6 @@ public class customerList implements ActionListener {
 
     public void clearListener() {
 
-        addButton.removeActionListener(this);
-        editButton.removeActionListener(this);
         backButton.removeActionListener(this);
 
     }
@@ -460,7 +409,7 @@ public class customerList implements ActionListener {
                     if (listSel.isSelectedIndex(i)) {
                         System.out.println(" index: " + i);
 
-                        customerData sD = newList.get(i);
+                        Customer sD = newList.get(i);
                         idResult.setText(sD.getId());
                         nameResult.setText(sD.getName());
                         phoneResult.setText(sD.getPhone());

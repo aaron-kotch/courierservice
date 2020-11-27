@@ -1,7 +1,6 @@
 package Staff;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +15,7 @@ public class assignOrders implements ItemListener {
 
     public static ArrayList<String> orderFull = new ArrayList<>();
     public static String[] orderSplit;
-    public static ArrayList<customerData> newOrderList = new ArrayList<>();
+    public static ArrayList<Customer> newOrderList = new ArrayList<>();
     public static List<String> getOrderData = new ArrayList<>();
 
     public static ArrayList<String> staffFull = new ArrayList<>();
@@ -155,7 +154,7 @@ public class assignOrders implements ItemListener {
                 if (tempString.contains("notSigned")) {
                     orderFull.add(tempString);
                     orderSplit = tempString.split("/"); //splits line
-                    customerData sL = new customerData(orderSplit[0], orderSplit[1], orderSplit[2], orderSplit[3], orderSplit[4], orderSplit[5], orderSplit[6], orderSplit[7]);
+                    Customer sL = new Customer(orderSplit[0], orderSplit[1], orderSplit[2], orderSplit[3], orderSplit[4], orderSplit[5], orderSplit[6], orderSplit[7]);
                     newOrderList.add(sL);
                     System.out.println(orderFull);
                 }
@@ -170,7 +169,7 @@ public class assignOrders implements ItemListener {
 
         while (i < newOrderList.size()) {
 
-            customerData sD = newOrderList.get(i);
+            Customer sD = newOrderList.get(i);
             String data = sD.getId() + "/" + sD.getName();
             getOrderData.add(data);
             System.out.println(data);

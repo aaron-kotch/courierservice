@@ -143,10 +143,6 @@ public class addStaff implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
-        new addStaff();
-    }
-
     public void writeText() {
 
         String getName = addStaff.name.getText();

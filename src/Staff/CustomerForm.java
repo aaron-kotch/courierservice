@@ -15,7 +15,7 @@ public class CustomerForm extends JFrame implements ActionListener{
     private final JTextField phoneNum;
     private final JRadioButton male;
     private final ButtonGroup gengp;
-    private final JLabel dob;
+    private final JLabel ordDate;
     private final JComboBox date;
     private final JComboBox month;
     private final JComboBox year;
@@ -30,7 +30,7 @@ public class CustomerForm extends JFrame implements ActionListener{
 
     public int idCount = 1;
 
-    private String payment;
+    public String payment;
 
     private final String[] dates
             = { "1", "2", "3", "4", "5",
@@ -124,11 +124,11 @@ public class CustomerForm extends JFrame implements ActionListener{
         gengp.add(male);
         gengp.add(female);
 
-        dob = new JLabel("Order Date");
-        dob.setFont(new Font("Serif", Font.PLAIN, 20));
-        dob.setSize(300, 20);
-        dob.setLocation(100, 250);
-        c.add(dob);
+        ordDate = new JLabel("Order Date");
+        ordDate.setFont(new Font("Serif", Font.PLAIN, 20));
+        ordDate.setSize(300, 20);
+        ordDate.setLocation(100, 250);
+        c.add(ordDate);
 
         date = new JComboBox(dates);
         date.setFont(new Font("Serif", Font.PLAIN, 15));
@@ -217,8 +217,10 @@ public class CustomerForm extends JFrame implements ActionListener{
     {
         if (e.getSource() == submit) {
 
+            System.out.println("HOLA");
             getId();
             getPayment();
+
 
             String data1;
 
@@ -366,27 +368,31 @@ public class CustomerForm extends JFrame implements ActionListener{
 
     public void getPayment() {
 
-        JFrame frame = new JFrame();
+        System.out.println("VREYNICE");
 
-        payment = JOptionPane.showInputDialog(frame, "Enter payment amount");
+        JFrame sframe = new JFrame();
+
+        payment = JOptionPane.showInputDialog(sframe, "Enter payment amount");
 
     }
 
     public void getId() {
 
+
+
         try {
             File file = new File("CustomerDetails.txt");
-            FileWriter f = new FileWriter(file, true);
-            BufferedWriter w = new BufferedWriter(f);
 
             Scanner s = new Scanner(file);
 
             while (s.hasNextLine()) {
                 idCount++;
+                s.nextLine();
+                System.out.println(idCount);
             }
+
+
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }
