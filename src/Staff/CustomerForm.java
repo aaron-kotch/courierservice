@@ -23,6 +23,7 @@ public class CustomerForm extends JFrame implements ActionListener{
     private final JTextArea tadd;
     private final JButton submit;
     private final JButton reset;
+    private final JButton back;
     private final JTextArea sideDisplay;
     private final JLabel res;
     private final JTextArea resadd;
@@ -164,16 +165,23 @@ public class CustomerForm extends JFrame implements ActionListener{
         submit = new JButton("Submit");
         submit.setFont(new Font("Serif", Font.PLAIN, 15));
         submit.setSize(100, 20);
-        submit.setLocation(150, 450);
+        submit.setLocation(100, 450);
         submit.addActionListener(this);
         c.add(submit);
 
         reset = new JButton("Reset");
         reset.setFont(new Font("Serif", Font.PLAIN, 15));
         reset.setSize(100, 20);
-        reset.setLocation(270, 450);
+        reset.setLocation(220, 450);
         reset.addActionListener(this);
         c.add(reset);
+
+        back = new JButton("Back");
+        back.setFont(new Font("Serif", Font.PLAIN, 15));
+        back.setSize(100, 20);
+        back.setLocation(340, 450);
+        back.addActionListener(this);
+        c.add(back);
 
         sideDisplay = new JTextArea();
         sideDisplay.setFont(new Font("Serif", Font.PLAIN, 15));
@@ -328,7 +336,18 @@ public class CustomerForm extends JFrame implements ActionListener{
             year.setSelectedIndex(0);
             resadd.setText(def);
         }
+
+        else if (e.getSource() == back) {
+
+            submit.removeActionListener(this);
+            reset.removeActionListener(this);
+            back.removeActionListener(this);
+            dispose();
+            new customerMenu();
+
+        }
     }
+
 
     //please rework this or gei
     public static void createFile(File customerDetailFile){

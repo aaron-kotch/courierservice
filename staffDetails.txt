@@ -1,1 +1,2 @@
-001/Aaron/01291212/aaron@mail.com/Delivery/aaron/12345/NotFree
+001/Aaron/aaron@mail.com/01291212/Delivery/aaron/12345/NotFree
+002/Chow/0187652327/Delivery/Delivery/chowjiunnyang/12345/null

@@ -42,6 +42,11 @@ public class viewFeedback implements ActionListener {
     final DefaultListModel<String> model = new DefaultListModel<>();
     public JList<String> sList;
 
+    public JPanel panel;
+    public JPanel leftPanel;
+    public JPanel bottomPanel;
+    public JPanel buttonPanel;
+
     boolean isSelect;
 
     public viewFeedback() {
@@ -50,11 +55,10 @@ public class viewFeedback implements ActionListener {
 
         GridBagConstraints gbc = new GridBagConstraints();
 
-        JPanel mainPanel = new JPanel(new GridLayout(2, 1));
-        JPanel panel = new JPanel(new GridLayout(1, 2));
-        JPanel leftPanel = new JPanel(new GridBagLayout());
-        JPanel bottomPanel = new JPanel(new BorderLayout());
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 5));
+        panel = new JPanel(new GridLayout(1, 2));
+        leftPanel = new JPanel(new GridBagLayout());
+        bottomPanel = new JPanel(new BorderLayout());
+        buttonPanel = new JPanel(new GridLayout(1, 5));
 
         backButton.addActionListener(this);
 
@@ -74,13 +78,11 @@ public class viewFeedback implements ActionListener {
 
         bottomPanel.add(outputPane, BorderLayout.CENTER);
         bottomPanel.add(buttonPanel, BorderLayout.PAGE_END);
-        mainPanel.add(panel);
-        mainPanel.add(bottomPanel);
 
 
 
         // frame
-        frame.add(mainPanel);
+        frame.add(new mainPanel());
         frame.setSize(350, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Profile");
@@ -88,10 +90,6 @@ public class viewFeedback implements ActionListener {
         frame.setVisible(true);
 
 
-    }
-
-    public static void main(String[] args) {
-        new viewFeedback();
     }
 
     public void getFeedback() {
@@ -203,6 +201,18 @@ public class viewFeedback implements ActionListener {
             }
 
         }
+    }
+
+    class mainPanel extends JPanel {
+
+        public mainPanel() {
+
+            setLayout(new GridLayout(2, 1));
+            add(panel);
+            add(bottomPanel);
+
+        }
+
     }
 }
 

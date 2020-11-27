@@ -95,6 +95,9 @@ public class updateStatus implements ItemListener {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                backButton.removeActionListener(this);
+                orderList.removeActionListener(this);
+                staffL.removeActionListener(this);
                 frame.dispose();
                 new Delivery();
             }

@@ -51,7 +51,7 @@ public class staffList implements ActionListener {
 
     private boolean isSelect;
 
-    private JFrame frame;
+    private final JFrame frame;
 
     final DefaultListModel<String> model = new DefaultListModel<>();
     public JList<String> sList;
@@ -223,11 +223,6 @@ public class staffList implements ActionListener {
         frame.setSize(500, 600);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
-    }
-
-    public static void main(String[] args) {
-        new staffList();
 
     }
 

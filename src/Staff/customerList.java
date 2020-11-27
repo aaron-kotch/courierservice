@@ -225,11 +225,6 @@ public class customerList implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
-        new customerList();
-
-    }
-
     public void updateStaff() {
         newList.clear();
 

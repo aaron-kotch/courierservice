@@ -8,8 +8,8 @@ import javax.swing.border.Border;
 
 public class Delivery implements ActionListener {
 
-    private static final JButton profButton = new JButton("View Profile");
-    private static final JButton taskButton = new JButton("View Tasks");
+    private final JButton profButton = new JButton("View Profile");
+    private final JButton taskButton = new JButton("View Tasks");
     private JFrame frame;
 
     public Delivery() {

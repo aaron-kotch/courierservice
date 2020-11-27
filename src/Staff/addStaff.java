@@ -195,6 +195,7 @@ public class addStaff implements ActionListener {
             save.removeActionListener(this);
             back.removeActionListener(this);
             writeText();
+            new staffMenu();
 
         }
 

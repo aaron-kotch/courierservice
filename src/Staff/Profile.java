@@ -130,7 +130,7 @@ public class Profile implements ActionListener {
 
         gbc.gridx = 1;
         gbc.gridy = 1;
-        leftPanel.add(phoneResult, gbc);
+        leftPanel.add(emailResult, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 2;
@@ -138,7 +138,7 @@ public class Profile implements ActionListener {
 
         gbc.gridx = 1;
         gbc.gridy = 3;
-        leftPanel.add(emailResult, gbc);
+        leftPanel.add(phoneResult, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 4;
@@ -228,7 +228,7 @@ public class Profile implements ActionListener {
 
         try {
 
-            File file = new File("customer.txt");
+            File file = new File("feedback.txt");
 
             if (!file.exists()) {
                 file.createNewFile();

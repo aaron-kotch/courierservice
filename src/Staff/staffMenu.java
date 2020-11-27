@@ -60,10 +60,6 @@ public class staffMenu implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
-        new staffMenu();
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
