@@ -16,8 +16,6 @@ public class Delivery implements ActionListener {
 
         frame = new JFrame();
 
-        // buttons
-        taskButton.addActionListener(this);
 
         // panel
         JLabel title = new JLabel("MENU");
@@ -63,8 +61,9 @@ public class Delivery implements ActionListener {
 
         if (e.getSource() == taskButton) {
 
+            frame.dispose();
             taskButton.removeActionListener(this);
-
+            new updateStatus();
         }
     }
 }

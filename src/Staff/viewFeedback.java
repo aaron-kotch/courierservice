@@ -105,7 +105,7 @@ public class viewFeedback implements ActionListener {
 
         try {
 
-            File file = new File("customer.txt");
+            File file = new File("feedback.txt");
 
             if (!file.exists()) {
                 file.createNewFile();
