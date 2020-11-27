@@ -34,7 +34,7 @@ public class addStaff implements ActionListener {
         JLabel phoneLabel = new JLabel("Contact number:");
         JLabel idLabel = new JLabel("ID number:");
         JLabel emailLabel = new JLabel("E-mail:");
-        JLabel roleLabel = new JLabel("Role:");
+        JLabel roleLabel = new JLabel("Role (Managing/Delivery):");
         JLabel usernameLabel = new JLabel("Username:");
         JLabel passLabel = new JLabel("Password:");
 
@@ -156,6 +156,7 @@ public class addStaff implements ActionListener {
         String getRole = addStaff.role.getText();
         String getUsername = addStaff.username.getText();
         String getPass = addStaff.password.getText();
+        String getStatus = "Available";
 
         try {
             File file = new File("staffDetails.txt");
@@ -176,7 +177,7 @@ public class addStaff implements ActionListener {
             BufferedWriter bL = new BufferedWriter(fL);
 
             bL.write(getUsername + "\n" + getPass + "\n" + getRole + "\n\n");
-            bw.write(getId + "/" + getName + "/" + getEmail + "/" + getPhone + "/" + getRole + "/" + getUsername + "/" + getPass + "/Available" + "\n");
+            bw.write(getId + "/" + getName + "/" + getEmail + "/" + getPhone + "/" + getRole + "/" + getUsername + "/" + getPass + "/" + getStatus + "\n");
             bL.close();
             bw.close();
 

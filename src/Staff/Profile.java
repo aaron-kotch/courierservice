@@ -39,7 +39,6 @@ public class Profile implements ActionListener {
     public static JLabel passResult = new JLabel();
 
     public static JButton editButton = new JButton("Edit");
-    public static JButton updateButton = new JButton("Update");
     public static JButton backButton = new JButton("Back");
 
     public static String tName;
@@ -84,12 +83,10 @@ public class Profile implements ActionListener {
         JPanel buttonPanel = new JPanel(new GridLayout(1, 5));
 
         editButton.addActionListener(this);
-        updateButton.addActionListener(this);
         backButton.addActionListener(this);
 
         buttonPanel.add(backButton);
         buttonPanel.add(editButton);
-        buttonPanel.add(updateButton);
 
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(10, 20, 10, 20);
@@ -292,6 +289,7 @@ public class Profile implements ActionListener {
         if (e.getSource() == editButton) {
 
             editButton.removeActionListener(this);
+            backButton.removeActionListener(this);
             frame.dispose();
             editStaff.fromWhere = "Profile";
             editStaff.editLine = userFull;
@@ -301,6 +299,7 @@ public class Profile implements ActionListener {
         }
 
         if (e.getSource() == backButton) {
+            editButton.removeActionListener(this);
             backButton.removeActionListener(this);
             frame.dispose();
             new Delivery();
