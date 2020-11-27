@@ -12,9 +12,10 @@ import java.awt.event.ActionListener;
 
 public class addStaff implements ActionListener {
 
-    private static final JFrame frame = new JFrame();
-    private static final JPanel panel = new JPanel();
+    private final JFrame frame;
+    private final JPanel panel;
     private static final JButton save = new JButton("Save");
+    private static final JButton back = new JButton("Cancel");
 
     private static final JTextField name = new JTextField();
     private static final JTextField phone = new JTextField();
@@ -25,6 +26,9 @@ public class addStaff implements ActionListener {
     private static final JPasswordField password = new JPasswordField();
 
     public addStaff() {
+
+        frame = new JFrame();
+        panel = new JPanel();
 
         JLabel nameLabel = new JLabel("Name:");
         JLabel phoneLabel = new JLabel("Contact number:");
@@ -83,6 +87,10 @@ public class addStaff implements ActionListener {
         gbc.gridy = 6;
         left.add(passLabel, gbc);
 
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        left.add(back, gbc);
+
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 1;
@@ -117,17 +125,21 @@ public class addStaff implements ActionListener {
         gbc.gridy = 7;
         left.add(save, gbc);
 
+        left.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+
         panel.setLayout(new BorderLayout());
         panel.add(left, BorderLayout.CENTER);
 
+
         // frame
-        frame.setSize(300, 400);
+        frame.setSize(400, 400);
         frame.setTitle("Manage");
         frame.setLocationRelativeTo(null);
         frame.add(panel);
         frame.setVisible(true);
 
         save.addActionListener(this);
+        back.addActionListener(this);
 
     }
 
@@ -178,7 +190,21 @@ public class addStaff implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == save) {
+
+            frame.dispose();
+            save.removeActionListener(this);
+            back.removeActionListener(this);
             writeText();
+
+        }
+
+        if (e.getSource() == back) {
+
+            frame.dispose();
+            save.removeActionListener(this);
+            back.removeActionListener(this);
+            new staffMenu();
+
         }
     }
 }

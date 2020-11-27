@@ -139,77 +139,80 @@ public class editProfile implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == save) {
+            frame.dispose();
             new editDeliveryText();
-            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
         }
     }
-}
 
-class editDeliveryText {
+    public class editDeliveryText {
 
-    String getName = editStaff.name.getText();
-    String getPhone = editStaff.phone.getText();
-    String getId = editStaff.id.getText();
-    String getEmail = editStaff.email.getText();
-    String getRole = editStaff.role.getText();
+        String getName = editStaff.name.getText();
+        String getPhone = editStaff.phone.getText();
+        String getId = editStaff.id.getText();
+        String getEmail = editStaff.email.getText();
+        String getRole = editStaff.role.getText();
 
-    String newData;
+        String newData;
 
-    public editDeliveryText() {
+        public editDeliveryText() {
 
-        String tempString = null;
+            String tempString = null;
 
-        try {
-            File file = new File("staffDetails.txt");
-            File tempFile = new File("tempStaffFile.txt");
+            try {
+                File file = new File("staffDetails.txt");
+                File tempFile = new File("tempStaffFile.txt");
 
-            Scanner s = new Scanner(file);
+                Scanner s = new Scanner(file);
 
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            if (!tempFile.exists()) {
-                file.createNewFile();
-            }
-
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile, true));
-
-            newData = getName + "/" + getPhone + "/" + getId + "/" + getEmail + "/" + getRole;
-
-            System.out.println("DATA " + newData);
-
-            while (s.hasNextLine()) {
-                tempString = s.next();
-
-                if (!tempString.equals(editStaff.editLine)) {
-                    writer.write(tempString);
-                    writer.newLine();
-                    s.nextLine();
+                if (!file.exists()) {
+                    file.createNewFile();
                 }
-                else {
-                    writer.write(newData);
-                    writer.newLine();
-                    s.nextLine();
+                if (!tempFile.exists()) {
+                    file.createNewFile();
                 }
+
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile, true));
+
+                newData = getName + "/" + getPhone + "/" + getId + "/" + getEmail + "/" + getRole;
+
+                System.out.println("DATA " + newData);
+
+                while (s.hasNextLine()) {
+                    tempString = s.next();
+
+                    if (!tempString.equals(editStaff.editLine)) {
+                        writer.write(tempString);
+                        writer.newLine();
+                        s.nextLine();
+                    }
+                    else {
+                        writer.write(newData);
+                        writer.newLine();
+                        s.nextLine();
+                    }
+                }
+
+                s.close();
+                writer.close();
+                reader.close();
+
+                boolean yes = file.delete();
+                System.out.println(yes);
+
+                boolean success = tempFile.renameTo(file);
+
+                System.out.println(success);
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
-            s.close();
-            writer.close();
-            reader.close();
-
-            boolean yes = file.delete();
-            System.out.println(yes);
-
-            boolean success = tempFile.renameTo(file);
-
-            System.out.println(success);
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
     }
 
 }
+
+

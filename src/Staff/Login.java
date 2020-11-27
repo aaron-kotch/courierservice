@@ -127,28 +127,30 @@ public class Login implements ActionListener {
             if (pass.equals(Start.loggedIn.getPassword())) {
                 System.out.println("Login success!");
                 System.out.println(Start.loggedIn);
+
+                if (Start.loggedIn.getRole().equals("Managing")) {
+                    frame.dispose();
+                    new Managing();
+                    getData();
+                }
+
+                else if (Start.loggedIn.getRole().equals("Delivery")) {
+                    frame.dispose();
+                    new Delivery();
+                    getData();
+                }
             }
             else {
                 System.out.println("Incorrect details!");
-
-            }
-
-            if (Start.loggedIn.getRole().equals("Managing")) {
-                frame.dispose();
-                new Managing();
-                getData();
-            }
-
-            else if (Start.loggedIn.getRole().equals("Delivery")) {
-                frame.dispose();
-                new Delivery();
-                getData();
-            }
-
-            else {
                 JFrame f = new JFrame();
-                JOptionPane.showMessageDialog(f, "Incorrect Password", "Alert", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(f, "Incorrect Password!", "Alert", JOptionPane.WARNING_MESSAGE);
             }
+        }
+
+        else {
+            System.out.println("Incorrect details!");
+            JFrame f = new JFrame();
+            JOptionPane.showMessageDialog(f, "User not found!", "Alert", JOptionPane.WARNING_MESSAGE);
         }
     }
 }

@@ -23,6 +23,7 @@ public class customerList implements ActionListener {
 
     public static JTextField searchTF = new JTextField();
     public static JButton searchButton = new JButton("Search");
+    public static JButton backButton = new JButton("Back");
     public static JButton delButton = new JButton("Delete");
     public static JButton addButton = new JButton("Add");
     public static JButton editButton = new JButton("Edit");
@@ -36,7 +37,7 @@ public class customerList implements ActionListener {
     public static JLabel addResult = new JLabel();
     public static JLabel payResult = new JLabel();
 
-    public static JPanel topPanel = new JPanel();
+    public JPanel topPanel = new JPanel();
 
     public static String tId;
     public static String tName;
@@ -51,7 +52,7 @@ public class customerList implements ActionListener {
     private boolean isSelect;
 
 
-    static  JFrame frame;
+    public JFrame frame;
     final DefaultListModel<String> model = new DefaultListModel<>();
     public JList<String> sList;
 
@@ -190,13 +191,15 @@ public class customerList implements ActionListener {
         gbc.gridy = 6;
         left.add(payResult, gbc);
 
-        JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
+        JPanel buttonPanel = new JPanel(new GridLayout(4, 1));
+        buttonPanel.add(backButton);
         buttonPanel.add(addButton);
         buttonPanel.add(editButton);
         buttonPanel.add(delButton);
 
         addButton.addActionListener(this);
         editButton.addActionListener(this);
+        backButton.addActionListener(this);
 
         delButton.addActionListener(this);
         delButton.setBackground(Color.red);
@@ -410,15 +413,36 @@ public class customerList implements ActionListener {
         }
 
         if (e.getSource() == addButton) {
+
+            clearListener();
+            frame.dispose();
             new addStaff();
         }
 
         if (e.getSource() == editButton) {
 
+            clearListener();
+            frame.dispose();
             editStaff.fromWhere = "staffList";
             new editStaff();
 
         }
+
+        if (e.getSource() == backButton) {
+
+            clearListener();
+            frame.dispose();
+            new customerMenu();
+
+        }
+
+    }
+
+    public void clearListener() {
+
+        addButton.removeActionListener(this);
+        editButton.removeActionListener(this);
+        backButton.removeActionListener(this);
 
     }
 

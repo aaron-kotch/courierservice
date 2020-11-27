@@ -22,8 +22,8 @@ public class Profile implements ActionListener {
 
     public static JLabel name = new JLabel("Name:");
     public static JLabel phone = new JLabel("Contact number:");
-    public static JLabel id = new JLabel("E-mail:");
-    public static JLabel email = new JLabel("Id:");
+    public static JLabel id = new JLabel("ID Number");
+    public static JLabel email = new JLabel("E-mail:");
     public static JLabel role = new JLabel("Role:");
     public static JLabel usernameLabel = new JLabel("Username:");
     public static JLabel passLabel = new JLabel("Password:");
@@ -49,6 +49,7 @@ public class Profile implements ActionListener {
     public static String tRole;
     public static String tUsername;
     public static String tPass;
+    public static String tStatus;
 
     public static String fOrderId;
     public static String fStaffId;
@@ -100,7 +101,7 @@ public class Profile implements ActionListener {
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        leftPanel.add(phone, gbc);
+        leftPanel.add(email, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -108,7 +109,7 @@ public class Profile implements ActionListener {
 
         gbc.gridx = 0;
         gbc.gridy = 3;
-        leftPanel.add(email, gbc);
+        leftPanel.add(phone, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 4;
@@ -190,7 +191,7 @@ public class Profile implements ActionListener {
     public void updateData() {
 
         String[] userSplit = userFull.split("/"); //splits line
-        staffData sL = new staffData(userSplit[0], userSplit[1], userSplit[2], userSplit[3], userSplit[4], userSplit[5], userSplit[6], userSplit[6]);
+        staffData sL = new staffData(userSplit[0], userSplit[1], userSplit[2], userSplit[3], userSplit[4], userSplit[5], userSplit[6], userSplit[7]);
         newList.add(sL);
         System.out.println(newList);
 
@@ -204,12 +205,13 @@ public class Profile implements ActionListener {
         passResult.setText(sD.getPassword());
 
         tName = sD.getName();
-        tPhone = sD.getRole();
+        tPhone = sD.getPhone();
         tId = sD.getId();
         tEmail = sD.getEmail();
         tRole = sD.getRole();
         tUsername = sD.getUsername();
         tPass = sD.getPassword();
+        tStatus = sD.getStatus();
 
         getFeedback();
 
@@ -289,6 +291,8 @@ public class Profile implements ActionListener {
 
         if (e.getSource() == editButton) {
 
+            editButton.removeActionListener(this);
+            frame.dispose();
             editStaff.fromWhere = "Profile";
             editStaff.editLine = userFull;
             System.out.println("USER " + userFull);
@@ -297,6 +301,7 @@ public class Profile implements ActionListener {
         }
 
         if (e.getSource() == backButton) {
+            backButton.removeActionListener(this);
             frame.dispose();
             new Delivery();
         }

@@ -26,17 +26,18 @@ public class staffList implements ActionListener {
     public static JButton delButton = new JButton("Delete");
     public static JButton addButton = new JButton("Add");
     public static JButton editButton = new JButton("Edit");
+    public static JButton backButton = new JButton("Back");
     public static JScrollPane scrollPane = new JScrollPane();
 
-    public static JLabel nameResult = new JLabel();
-    public static JLabel phoneResult = new JLabel();
-    public static JLabel idResult = new JLabel();
-    public static JLabel emailResult= new JLabel();
-    public static JLabel roleResult = new JLabel();
-    public static JLabel usernameResult = new JLabel();
-    public static JLabel passwordResult = new JLabel();
+    public JLabel nameResult = new JLabel();
+    public JLabel phoneResult = new JLabel();
+    public JLabel idResult = new JLabel();
+    public JLabel emailResult= new JLabel();
+    public JLabel roleResult = new JLabel();
+    public JLabel usernameResult = new JLabel();
+    public JLabel passwordResult = new JLabel();
 
-    public static JPanel topPanel = new JPanel();
+    public JPanel topPanel = new JPanel();
 
     public static String tName;
     public static String tPhone;
@@ -50,8 +51,8 @@ public class staffList implements ActionListener {
 
     private boolean isSelect;
 
+    private JFrame frame;
 
-    static  JFrame frame;
     final DefaultListModel<String> model = new DefaultListModel<>();
     public JList<String> sList;
 
@@ -190,15 +191,18 @@ public class staffList implements ActionListener {
         gbc.gridy = 6;
         left.add(passwordResult, gbc);
 
-        JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
+        JPanel buttonPanel = new JPanel(new GridLayout(4, 1));
+        buttonPanel.add(backButton);
         buttonPanel.add(addButton);
         buttonPanel.add(editButton);
         buttonPanel.add(delButton);
 
         addButton.addActionListener(this);
         editButton.addActionListener(this);
-
         delButton.addActionListener(this);
+        backButton.addActionListener(this);
+
+
         delButton.setBackground(Color.red);
 
         output = new JTextArea(10, 10);
@@ -380,6 +384,15 @@ public class staffList implements ActionListener {
         }
     }
 
+    public void clearListener() {
+
+        backButton.removeActionListener(this);
+        delButton.removeActionListener(this);
+        addButton.removeActionListener(this);
+        editButton.removeActionListener(this);
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -407,16 +420,27 @@ public class staffList implements ActionListener {
         }
 
         if (e.getSource() == addButton) {
+            clearListener();
+            frame.dispose();
             new addStaff();
         }
 
         if (e.getSource() == editButton) {
 
+            clearListener();
+            frame.dispose();
             editStaff.fromWhere = "staffList";
             new editStaff();
 
         }
 
+        if (e.getSource() == backButton) {
+
+            clearListener();
+            frame.dispose();
+            new staffMenu();
+
+        }
     }
 
     class SharedListSelectionHandler implements ListSelectionListener {

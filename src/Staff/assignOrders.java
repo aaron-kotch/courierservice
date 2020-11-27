@@ -1,6 +1,7 @@
 package Staff;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,9 @@ public class assignOrders implements ItemListener {
 
     public static String[] orderResultSplit;
     public static String[] staffResultSplit;
+
+    public JButton backButton = new JButton("Back");
+    public JButton assignButton = new JButton("Save");
 
     public static String orderResult1;
     public static String orderResult2;
@@ -55,8 +59,8 @@ public class assignOrders implements ItemListener {
         JPanel topPanel = new JPanel(new BorderLayout());
         JPanel centPanel = new JPanel(new BorderLayout());
         JPanel bottPanel = new JPanel(new BorderLayout());
-
-        JButton assignButton = new JButton("Save");
+        JPanel bottPanel1 = new JPanel(new BorderLayout());
+        JPanel bottPanel2 = new JPanel(new BorderLayout());
 
         JLabel orderLabel = new JLabel("Select Orders:");
         JLabel staffLabel = new JLabel("Assign to:");
@@ -91,16 +95,29 @@ public class assignOrders implements ItemListener {
             }
         });
 
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new staffMenu();
+            }
+        });
+
         topPanel.add(orderList, BorderLayout.PAGE_END);
         topPanel.add(orderLabel, BorderLayout.PAGE_START);
 
         centPanel.add(staffL, BorderLayout.PAGE_END);
-        centPanel.add(staffLabel, BorderLayout.PAGE_START)
-;        bottPanel.add(assignButton);
+        centPanel.add(staffLabel, BorderLayout.PAGE_START);
+        bottPanel1.add(assignButton);
+        bottPanel2.add(backButton);
+
+        bottPanel.add(bottPanel1, BorderLayout.LINE_END);
+        bottPanel.add(bottPanel2, BorderLayout.LINE_START);
 
         topPanel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
         centPanel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-        bottPanel.setBorder(BorderFactory.createEmptyBorder(40,20,20,20));
+        bottPanel1.setBorder(BorderFactory.createEmptyBorder(40,0,20,20));
+        bottPanel2.setBorder(BorderFactory.createEmptyBorder(40,20,20,0));
 
         panel.add(topPanel);
         panel.add(centPanel);
@@ -113,10 +130,6 @@ public class assignOrders implements ItemListener {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-    }
-
-    public static void main(String[] args) {
-        new assignOrders();
     }
 
     public void getOrders() {
@@ -229,6 +242,8 @@ public class assignOrders implements ItemListener {
             File staffFile = new File("staffDetails.txt");
             File staffTempFile = new File("tempStaffFile.txt");
 
+            File custFile = new File("customer.txt");
+
             Scanner s = new Scanner(orderFile);
             Scanner d = new Scanner(staffFile);
 
@@ -238,9 +253,13 @@ public class assignOrders implements ItemListener {
             if (!staffFile.exists()) {
                 staffFile.createNewFile();
             }
+            if (!custFile.exists()) {
+                staffFile.createNewFile();
+            }
 
             BufferedWriter writerO = new BufferedWriter(new FileWriter(orderTempFile, true));
             BufferedWriter writerS = new BufferedWriter(new FileWriter(staffTempFile, true));
+            BufferedWriter writerC = new BufferedWriter(new FileWriter(custFile, true));
 
             while (s.hasNextLine()) {
                 tempString = s.next();
@@ -293,10 +312,13 @@ public class assignOrders implements ItemListener {
                 }
             }
 
+            writerC.write(orderResult1 + "/" + staffResult1 + "/" + orderResult2 + "/");
+
             s.close();
             d.close();
             writerO.close();
             writerS.close();
+            writerC.close();
 
             boolean yes = orderFile.delete();
             boolean yes1 = staffFile.delete();

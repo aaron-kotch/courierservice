@@ -28,9 +28,18 @@ public class editStaff implements ActionListener {
     private static final String pRole = Profile.tRole;
     private static final String pUsername = Profile.tUsername;
     private static final String pPass = Profile.tPass;
+    private static final String pStatus = Profile.tStatus;
 
-    private static final JFrame frame = new JFrame();
-    private static final JPanel panel = new JPanel();
+    private static final JLabel nameLabel = new JLabel("Name:");
+    private static final JLabel phoneLabel = new JLabel("Contact number:");
+    private static final JLabel idLabel = new JLabel("ID number:");
+    private static final JLabel emailLabel = new JLabel("E-mail:");
+    private static final JLabel roleLabel = new JLabel("Role:");
+    private static final JLabel usernameLabel = new JLabel("Username:");
+    private static final JLabel passLabel = new JLabel("Password:");
+
+    private JFrame frame;
+    private JPanel panel;
     private static final JButton save = new JButton("Save");
 
     public static String editLine;
@@ -44,6 +53,9 @@ public class editStaff implements ActionListener {
     public static final JPasswordField password = new JPasswordField();
 
     public editStaff() {
+
+        frame = new JFrame();
+        panel = new JPanel();
 
         if (fromWhere.equals("staffList")) {
             name.setText(nName);
@@ -67,14 +79,6 @@ public class editStaff implements ActionListener {
             password.setText(pPass);
             System.out.println("from profile");
         }
-
-        JLabel nameLabel = new JLabel("Name:");
-        JLabel phoneLabel = new JLabel("Contact number:");
-        JLabel idLabel = new JLabel("ID number:");
-        JLabel emailLabel = new JLabel("E-mail:");
-        JLabel roleLabel = new JLabel("Role:");
-        JLabel usernameLabel = new JLabel("Username:");
-        JLabel passLabel = new JLabel("Password:");
 
         nameLabel.setPreferredSize(new Dimension(50, 100));
         phoneLabel.setPreferredSize(new Dimension(50, 100));
@@ -162,6 +166,8 @@ public class editStaff implements ActionListener {
         panel.setLayout(new BorderLayout());
         panel.add(left, BorderLayout.CENTER);
 
+        save.addActionListener(this);
+
         // frame
         frame.setSize(300, 400);
         frame.setTitle("Manage");
@@ -169,36 +175,38 @@ public class editStaff implements ActionListener {
         frame.add(panel);
         frame.setVisible(true);
 
-        save.addActionListener(this);
-
     }
 
-    public static void main(String[] args) {
-        new addStaff();
-    }
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == save) {
-            new editText();
-            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+            save.removeActionListener(this);
+            frame.dispose();
+            editText();
+
+            if (fromWhere.equals("staffList")) {
+                new staffList();
+            }
+
+            if (fromWhere.equals("Profile")) {
+                new Profile();
+            }
         }
     }
-}
 
-class editText {
+    public static void editText() {
 
-    String getName = editStaff.name.getText();
-    String getPhone = editStaff.phone.getText();
-    String getId = editStaff.id.getText();
-    String getEmail = editStaff.email.getText();
-    String getRole = editStaff.role.getText();
-    String getUsername = editStaff.username.getText();
-    String getPass = editStaff.password.getText();
+        String getName = editStaff.name.getText();
+        String getPhone = editStaff.phone.getText();
+        String getId = editStaff.id.getText();
+        String getEmail = editStaff.email.getText();
+        String getRole = editStaff.role.getText();
+        String getUsername = editStaff.username.getText();
+        String getPass = editStaff.password.getText();
+        String getStatus = editStaff.pStatus;
 
-    String newData;
-
-    public editText() {
+        String newData;
 
         String tempString = null;
 
@@ -218,7 +226,7 @@ class editText {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile, true));
 
-            newData = getName + "/" + getPhone + "/" + getId + "/" + getEmail + "/" + getRole + "/" + getUsername + "/" + getPass;
+            newData = getId + "/" + getName + "/" + getEmail + "/" + getPhone + "/" + getRole + "/" + getUsername + "/" + getPass + "/" + getStatus;
 
             System.out.println("DATA " + newData);
 
