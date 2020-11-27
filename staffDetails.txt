@@ -1,3 +1,1 @@
-001/Aaron/01234567/aaron@gmail.com/Delivery/aaronkotch/12345/NotFree
-002/Guano/0143252324/guano@gmail.com/Delivery/guanoshit/12345/NotFree
-003/Epoi/0182723723/epoi@mail.com/Managing/epoi29/12345/Available
+001/Aaron/aaron@mail.com/0178759272/Delivery/aaronkotch/12345/Available

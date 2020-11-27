@@ -281,6 +281,7 @@ public class CustomerForm extends JFrame implements ActionListener{
                     w.write(pAdd);
                     w.write( "/");
                     w.write(payment);
+                    w.write("/notSigned");
                     w.newLine();
                 }
 

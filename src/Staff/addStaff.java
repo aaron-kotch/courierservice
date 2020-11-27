@@ -164,7 +164,7 @@ public class addStaff implements ActionListener {
             BufferedWriter bL = new BufferedWriter(fL);
 
             bL.write(getUsername + "\n" + getPass + "\n" + getRole + "\n\n");
-            bw.write(getId + "/" + getName + "/" + getEmail + "/" + getPhone + "/" + getRole + "/" + getUsername + "/" + getPass + "\n");
+            bw.write(getId + "/" + getName + "/" + getEmail + "/" + getPhone + "/" + getRole + "/" + getUsername + "/" + getPass + "/Available" + "\n");
             bL.close();
             bw.close();
 

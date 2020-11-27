@@ -98,8 +98,6 @@ public class Login implements ActionListener {
 
             }
 
-            System.out.println("Current User: " + currentUser);
-
             s.close();
 
         } catch (IOException e) {
@@ -122,13 +120,6 @@ public class Login implements ActionListener {
                 System.out.println("user found");
                 Start.loggedIn = sT;
             }
-
-            else {
-
-                JFrame f = new JFrame();
-                JOptionPane.showMessageDialog(f, "Incorrect Password", "Alert", JOptionPane.WARNING_MESSAGE);
-                break;
-            }
         }
 
         if (Start.loggedIn != null) {
@@ -139,6 +130,7 @@ public class Login implements ActionListener {
             }
             else {
                 System.out.println("Incorrect details!");
+
             }
 
             if (Start.loggedIn.getRole().equals("Managing")) {
@@ -151,6 +143,11 @@ public class Login implements ActionListener {
                 frame.dispose();
                 new Delivery();
                 getData();
+            }
+
+            else {
+                JFrame f = new JFrame();
+                JOptionPane.showMessageDialog(f, "Incorrect Password", "Alert", JOptionPane.WARNING_MESSAGE);
             }
         }
     }
